@@ -1,0 +1,16 @@
+{
+  "name": "jsfinalproject",
+  "version": "1.0.0",
+  "description": "JS Final Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Y. Abouzeid",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.3",
+    "bootstrap-icons": "^1.11.3"
+  }
+}
