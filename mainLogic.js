@@ -96,8 +96,7 @@ function loginBtnClicked(){
         const modalInstance = bootstrap.Modal.getInstance(modal)
         modalInstance.hide()
         showAlert ("Logged in successfully", "success")
-        setupUI()
-        getPosts()  
+        setupUI() 
     })
     .catch(error => {
         const message = error.response.data.message
@@ -113,8 +112,7 @@ function logout(){
     localStorage.removeItem("token")
     localStorage.removeItem("user")
     showAlert ("Logged out successfully")
-    setupUI()
-    getPosts()  
+    setupUI() 
 }
 
 // Profle Clicked

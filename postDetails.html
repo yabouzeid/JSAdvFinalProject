@@ -43,6 +43,10 @@
         .card{
             margin-top: 5px;
         }
+        .card-header,.card-body{
+            cursor: pointer;
+        }
+        /* Loader styles */
         #loader{
             display: flex;
             justify-content: center;
@@ -58,8 +62,91 @@
             left: 0;
             right: 0;
             margin: auto auto;
-
         }
+        .lds-spinner,
+        .lds-spinner div,
+        .lds-spinner div:after {
+            box-sizing: border-box;
+        }
+        .lds-spinner {
+            color: rgb(255, 255, 255);
+            display: inline-block;
+            /* position: relative; */
+            width: 80px;
+            height: 80px;
+        }
+        .lds-spinner div {
+            transform-origin: 40px 40px;
+            animation: lds-spinner 1.2s linear infinite;
+        }
+        .lds-spinner div:after {
+            content: " ";
+            display: block;
+            position: absolute;
+            top: 3.2px;
+            left: 36.8px;
+            width: 3.2px;
+            height: 17.6px;
+            border-radius: 20%;
+            background: currentColor;
+        }
+        .lds-spinner div:nth-child(1) {
+            transform: rotate(0deg);
+            animation-delay: -1.1s;
+        }
+        .lds-spinner div:nth-child(2) {
+            transform: rotate(30deg);
+            animation-delay: -1s;
+        }
+        .lds-spinner div:nth-child(3) {
+            transform: rotate(60deg);
+            animation-delay: -0.9s;
+        }
+        .lds-spinner div:nth-child(4) {
+            transform: rotate(90deg);
+            animation-delay: -0.8s;
+        }
+        .lds-spinner div:nth-child(5) {
+            transform: rotate(120deg);
+            animation-delay: -0.7s;
+        }
+        .lds-spinner div:nth-child(6) {
+            transform: rotate(150deg);
+            animation-delay: -0.6s;
+        }
+        .lds-spinner div:nth-child(7) {
+            transform: rotate(180deg);
+            animation-delay: -0.5s;
+        }
+        .lds-spinner div:nth-child(8) {
+            transform: rotate(210deg);
+            animation-delay: -0.4s;
+        }
+        .lds-spinner div:nth-child(9) {
+            transform: rotate(240deg);
+            animation-delay: -0.3s;
+        }
+        .lds-spinner div:nth-child(10) {
+            transform: rotate(270deg);
+            animation-delay: -0.2s;
+        }
+        .lds-spinner div:nth-child(11) {
+            transform: rotate(300deg);
+            animation-delay: -0.1s;
+        }
+        .lds-spinner div:nth-child(12) {
+            transform: rotate(330deg);
+            animation-delay: 0s;
+        }
+        @keyframes lds-spinner {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+        /* end Loader styles */
     </style>
 </head>
 <body>
@@ -83,11 +170,11 @@
                     <form>
                         <div class="mb-3">
                             <label for="user-name" class="col-form-label">Username:</label>
-                            <input type="text" class="form-control" id="user-name" value="my.name">
+                            <input type="text" class="form-control" id="user-name" value="">
                         </div>
                         <div class="mb-3">
                             <label for="pwrd" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="pwrd" value="123456">
+                            <input type="password" class="form-control" id="pwrd" value="">
                         </div>
                     </form>
                 </div>
@@ -112,15 +199,15 @@
                     <form>
                         <div class="mb-1">
                             <label for="reg-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="reg-name" value="Youssef">
+                            <input type="text" class="form-control" id="reg-name" value="">
                         </div>
                         <div class="mb-1">
                             <label for="reg-username" class="col-form-label">Username:</label>
-                            <input type="text" class="form-control" id="reg-username" value="Joe">
+                            <input type="text" class="form-control" id="reg-username" value="">
                         </div>
                         <div class="mb-1">
                             <label for="reg-pwrd" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="reg-pwrd" value="123456">
+                            <input type="password" class="form-control" id="reg-pwrd" value="">
                         </div>
                         <div class="mb-1">
                             <label for="reg-email" class="col-form-label">email:</label>
@@ -154,8 +241,11 @@
                         <div class="mb-3">
                             <label for="addpost-title" class="col-form-label">Title:</label>
                             <input type="text" class="form-control" id="addpost-title" value="">
+                            <!-- is add post -->
+                            <input type="hidden" id="post-id" value = "">
                         </div>
                         <div class="mb-3">
+                            <label for="addpost-body" class="col-form-label">Body:</label>
                             <textarea class="form-control" id="addpost-body" style="width: 100%; height: 100px; border-color: gray; border-radius: 10px; resize: none;"></textarea>
                         </div>
                         <div class="mb-3">
@@ -172,7 +262,33 @@
         </div>
     </div>        
     <!--  end Add Post Modal -->
+    
+    <!-- Delete Post Modal -->
+    <div class="modal fade" id="deletePost-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitle">Confirm deleting post ?
+                        <span id="postToDelete"></span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <input type="hidden" id="postTODelete-id" value="">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" id="add-edit-btn" class="btn btn-danger" onclick="confirmPostDelete()">Confirm Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>        
+    <!--  end Delete Post Modal -->
     <!-- end Modals -->  
+
+    <!-- Add post button -->
+    <div class="text-white bg-primary fw-bolder shadow" id="addPost-btn" onclick="addBtnClicked()">
+        +
+    </div>
+    <!-- end Add post button -->
 
     <!-- Alerts -->
     <div id="alert" class="show fade" style="position: fixed; z-index: 999999; width: 30%; bottom: 0; right: 0;"></div>
@@ -185,7 +301,9 @@
                 <!-- Nav Bar -->
                 <nav class="navbar navbar-expand-lg navbar-light bg-light shadow rounded">
                     <div class="container-fluid">
-                        <a class="navbar-brand" href="home.html">GEagle</a>
+                        <a class="navbar-brand" href="home.html">
+                            <img src="./profile-pics/4.jpeg" alt="" style="width: 40px; height: 40px; border-radius: 20px;">
+                        </a>
                         <!-- case: small viewport  width -->
                         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
@@ -286,8 +404,7 @@
         <!-- end post -->
     </div>
     <!-- end Main Container -->
-
-    <script src="./mainLogic.js"></script>     
+        
     <script>
         const urlParams = new URLSearchParams(window.location.search)
         const postid = urlParams.get("postid")
@@ -296,106 +413,113 @@
 
         // Get Post
         function getPost(){
-        axios.get(`${baseURL}/posts/${postid}`)
-        // axios automatically checkes status of response
-        // and returns a promise.
-        .then((response) => {
-            // 1st .data from axios, 2nd .data from api
-            const post = response.data.data
-            const comments = post.comments
-            const author = post.author
-
-            document.getElementById("userNameSpan").innerHTML = author.username
-            let postTitle = ""
-            if (post.title != null){
-                postTitle = post.title
-            }
-            let commentsContent = ""
-            for (comment of comments){
-                commentsContent += `
-                    <div class="p-1" style="background-color: rgb(235, 235, 235);">
-                        <img class="rounded-circle border border-2" src="${comment.author.profile_image}" alt="" style="width: 40px; height: 40px;">
-                        <b>${comment.author.username}</b>
+            toggleLoader(true)
+            axios.get(`${baseURL}/posts/${postid}`)
+            // axios automatically checkes status of response
+            // and returns a promise.
+            .then((response) => {
+                // 1st .data from axios, 2nd .data from api
+                const post = response.data.data
+                const comments = post.comments
+                const author = post.author
+                document.getElementById("userNameSpan").innerHTML = author.username
+                let postTitle = ""
+                if (post.title != null){
+                    postTitle = post.title
+                }
+                let commentsContent = ""
+                for (comment of comments){
+                    commentsContent += `
+                        <div class="p-1" style="background-color: rgb(235, 235, 235);">
+                            <img class="rounded-circle border border-2" src="${comment.author.profile_image}" alt="" style="width: 40px; height: 40px;">
+                            <b>${comment.author.username}</b>
+                        </div>
+                        <div>
+                            ${comment.body}
+                        </div>                    
+                    `
+                }
+                const postContent = `
+                    <div class="card-header">
+                        <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
+                        <b>@${author.username}</b>
                     </div>
-                    <div>
-                        ${comment.body}
-                    </div>                    
-                `
-            }
-            const postContent = `
-                <div class="card-header">
-                    <img class="rounded-circle border border-2" src="${author.profile_image}" alt="" style="width: 40px; height: 40px;">
-                    <b>@${author.username}</b>
-                </div>
-                <div class="card-body">
-                    <img class="w-100" src="${post.image}" alt="">
-                    <h6 class="mt-1" style="color: rgb(193, 193, 193);">${post.created_at}</h6>
-                    <h5>${postTitle}</h5>
-                    <p>${post.body}</p>
-                    <hr>
-                    <div>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
-                            <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
-                        </svg>
-                        <span>(${post.comments_count}) Comments
-                            <span id="post-tags-${post.id}">
-                                <button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">policy</button>
+                    <div class="card-body">
+                        <img class="w-100" src="${post.image}" alt="">
+                        <h6 class="mt-1" style="color: rgb(193, 193, 193);">${post.created_at}</h6>
+                        <h5>${postTitle}</h5>
+                        <p>${post.body}</p>
+                        <hr>
+                        <div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pen" viewBox="0 0 16 16">
+                                <path d="m13.498.795.149-.149a1.207 1.207 0 1 1 1.707 1.708l-.149.148a1.5 1.5 0 0 1-.059 2.059L4.854 14.854a.5.5 0 0 1-.233.131l-4 1a.5.5 0 0 1-.606-.606l1-4a.5.5 0 0 1 .131-.232l9.642-9.642a.5.5 0 0 0-.642.056L6.854 4.854a.5.5 0 1 1-.708-.708L9.44.854A1.5 1.5 0 0 1 11.5.796a1.5 1.5 0 0 1 1.998-.001m-.644.766a.5.5 0 0 0-.707 0L1.95 11.756l-.764 3.057 3.057-.764L14.44 3.854a.5.5 0 0 0 0-.708z"/>
+                            </svg>
+                            <span>(${post.comments_count}) Comments
+                                <span id="post-tags-${post.id}">
+                                    <button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">policy</button>
+                                </span>
                             </span>
-                        </span>
-                    </div>
-                    </div id="comments">
-                        ${commentsContent}
-                    </div>
-                    <div id="addComnt-div" class="input-group mb-3">
-                        <input id="addComnt" type="text" class="form-control" placehoder="add your comment">
-                        <button class="btn btn-outline-primary" type="button" onclick="addCmntClicked()">Send</button>
-                    </div>
-
-                </div>          
-            `
-            document.getElementById("post").innerHTML = postContent
-
-            let currentPostTagsId = `post-tags-${post.id}`
-            document.getElementById(currentPostTagsId).innerHTML = ""
-            for(tag of post.tags){
-                let tagsContent =`
-                    <button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">${tag.name}</button>
+                        </div>
+                        </div id="comments">
+                            ${commentsContent}
+                        </div>
+                        <div id="addComnt-div" class="input-group mb-3">
+                            <input id="addComnt" type="text" class="form-control" placehoder="add your comment">
+                            <button class="btn btn-outline-primary" type="button" onclick="addCmntClicked()">Send</button>
+                        </div>
+                    </div>          
                 `
-                document.getElementById(currentPostTagsId).innerHTML += tagsContent
-            }
-        })
-        .catch(error => {
-            const message = error.response.data.message
-            showAlert (message, "danger")
-        })
-    }
-     
-    // add Comment
-    function addCmntClicked(){
-        let cmntBody = document.getElementById("addComnt").value
-        let params = {
-            "body": cmntBody
+                document.getElementById("post").innerHTML = postContent
+                let currentPostTagsId = `post-tags-${post.id}`
+                document.getElementById(currentPostTagsId).innerHTML = ""
+                for(tag of post.tags){
+                    let tagsContent =`
+                        <button class="btn btn-sm rounded-5" style="background-color: gray; color: white;">${tag.name}</button>
+                    `
+                    document.getElementById(currentPostTagsId).innerHTML += tagsContent
+                }
+            })
+            .catch(error => {
+                const message = error.response.data.message
+                showAlert (message, "danger")
+            })
+            .finally(() => {
+            toggleLoader(false)
+            }) 
         }
-        let token = localStorage.getItem("token")
-        let url = `${baseURL}/posts/${postid}/comments`
-        axios.post(url, params, {
-            headers:{
-                "authorization": `Bearer ${token}`
+
+        // add Comment
+        function addCmntClicked(){
+            let cmntBody = document.getElementById("addComnt").value
+            let params = {
+                "body": cmntBody
             }
-        })
-        // axios automatically checkes status of response
-        // and returns a promise.
-        .then((response) => {
-            // 1st .data from axios, 2nd .data from api
-            console.log(response.data.data)
-            showAlert ("Comment added successfully.", "success")
-            getPost()
-        })
-        .catch(error => {
-            const message = error.response.data.message
-            showAlert (message, "danger")
-        })        
-    }
+            let token = localStorage.getItem("token")
+            let url = `${baseURL}/posts/${postid}/comments`
+            toggleLoader(true)
+            axios.post(url, params, {
+                headers:{
+                    "authorization": `Bearer ${token}`
+                }
+            })
+            // axios automatically checkes status of response
+            // and returns a promise.
+            .then((response) => {
+                // 1st .data from axios, 2nd .data from api
+                console.log(response.data.data)
+                showAlert ("Comment added successfully.", "success")
+                getPost()
+            })
+            .catch(error => {
+                const message = error.response.data.message
+                showAlert (message, "danger")
+            }) 
+            .finally(() => {
+            toggleLoader(false)
+            })       
+        }        
     </script> 
+
+    <script src="./mainLogic.js"></script>
 </body>
 </html>
