@@ -154,8 +154,11 @@
                         <div class="mb-3">
                             <label for="addpost-title" class="col-form-label">Title:</label>
                             <input type="text" class="form-control" id="addpost-title" value="">
+                            <!-- is add post -->
+                            <input type="hidden" id="post-id" value = "">
                         </div>
                         <div class="mb-3">
+                            <label for="addpost-body" class="col-form-label">Body:</label>
                             <textarea class="form-control" id="addpost-body" style="width: 100%; height: 100px; border-color: gray; border-radius: 10px; resize: none;"></textarea>
                         </div>
                         <div class="mb-3">
@@ -172,6 +175,26 @@
         </div>
     </div>        
     <!--  end Add Post Modal -->
+
+        <!-- Delete Post Modal -->
+        <div class="modal fade" id="deletePost-modal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalTitle">Confirm deleting post ?
+                            <span id="postToDelete"></span>
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <input type="hidden" id="postTODelete-id" value="">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" id="add-edit-btn" class="btn btn-danger" onclick="confirmPostDelete()">Confirm Delete</button>
+                    </div>
+                </div>
+            </div>
+        </div>        
+        <!--  end Delete Post Modal -->
     <!-- end Modals -->  
 
     <!-- Alerts -->
