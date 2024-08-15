@@ -171,7 +171,7 @@ function addPostBtnClicked(){
         headers: headers   
     })
     .then((response) => {
-        console.log(response)
+        // console.log(response)
         // close add post modal (bootstrap instance)
         const modal = document.getElementById("addPost-modal")
         const modalInstance = bootstrap.Modal.getInstance(modal)
@@ -211,7 +211,7 @@ function confirmPostDelete(){
         headers: headers   
     })
     .then((response) => {
-        console.log(response)
+        // console.log(response)
         // close add post modal (bootstrap instance)
         const modal = document.getElementById("deletePost-modal")
         const modalInstance = bootstrap.Modal.getInstance(modal)

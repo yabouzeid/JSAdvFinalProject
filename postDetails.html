@@ -59,7 +59,6 @@
             left: 0;
             right: 0;
             margin: auto auto;
-
         }
         .lds-spinner,
         .lds-spinner div,
@@ -168,11 +167,11 @@
                     <form>
                         <div class="mb-3">
                             <label for="user-name" class="col-form-label">Username:</label>
-                            <input type="text" class="form-control" id="user-name" value="my.name">
+                            <input type="text" class="form-control" id="user-name" value="">
                         </div>
                         <div class="mb-3">
                             <label for="pwrd" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="pwrd" value="123456">
+                            <input type="password" class="form-control" id="pwrd" value="">
                         </div>
                     </form>
                 </div>
@@ -197,19 +196,19 @@
                     <form>
                         <div class="mb-1">
                             <label for="reg-name" class="col-form-label">Name:</label>
-                            <input type="text" class="form-control" id="reg-name" value="Youssef">
+                            <input type="text" class="form-control" id="reg-name" value="">
                         </div>
                         <div class="mb-1">
                             <label for="reg-username" class="col-form-label">Username:</label>
-                            <input type="text" class="form-control" id="reg-username" value="Joe">
+                            <input type="text" class="form-control" id="reg-username" value="">
                         </div>
                         <div class="mb-1">
                             <label for="reg-pwrd" class="col-form-label">Password:</label>
-                            <input type="password" class="form-control" id="reg-pwrd" value="123456">
+                            <input type="password" class="form-control" id="reg-pwrd" value="">
                         </div>
                         <div class="mb-1">
                             <label for="reg-email" class="col-form-label">email:</label>
-                            <input type="email" class="form-control" id="reg-email" value="yma@outlook.com">
+                            <input type="email" class="form-control" id="reg-email" value="">
                         </div>
                         <div class="mb-1">
                             <label for="user-img" class="col-form-label">img:</label>
@@ -340,7 +339,7 @@
         <div class="row d-flex justify-content-center mt-1">
             <div class="col-9">
                 <h5>
-                    <span id="userNameSpan">@Joe's</span>
+                    <span id="userNameSpan">@user's</span>
                     Post
                 </h5>
             </div>
@@ -353,7 +352,7 @@
                     <!-- card Header -->
                     <div class="card-header">
                         <img class="rounded-circle border border-2" src="./profile-pics/Profile-Avatar.png" alt="" style="width: 40px; height: 40px;">
-                        <b>@yarhmm</b>
+                        <b>@name</b>
                     </div>
                     <!-- end card Header -->
                     <!-- card Body -->
@@ -383,7 +382,7 @@
                     <div id="comments">
                         <div class="p-1" style="background-color: rgb(235, 235, 235);">
                             <img class="rounded-circle border border-2" src="./profile-pics/Profile-Avatar.png" alt="" style="width: 40px; height: 40px;">
-                            <b>@yarhmm</b>
+                            <b>@name</b>
                         </div>
                         <div>
                             Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, soluta.
@@ -502,7 +501,7 @@
         // and returns a promise.
         .then((response) => {
             // 1st .data from axios, 2nd .data from api
-            console.log(response.data.data)
+            // console.log(response.data.data)
             showAlert ("Comment added successfully.", "success")
             getPost()
         })

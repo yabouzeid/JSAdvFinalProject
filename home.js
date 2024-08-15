@@ -23,7 +23,7 @@ function getPosts(reload = true, page = 1){
     .then((response) => {
         // 1st .data from axios, 2nd .data from api
         const posts = response.data.data
-        console.log(posts)
+        // console.log(posts)
         lastPage = response.data.meta.last_page
         if (reload){
             document.getElementById("posts").innerHTML = ""
