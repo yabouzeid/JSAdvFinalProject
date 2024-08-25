@@ -141,7 +141,7 @@ function editBtnClicked(postObj){
     postModal.toggle()
 }
 
-// Add / Edit Post
+// Add or Edit Post
 function addPostBtnClicked(){
     let postID = document.getElementById("post-id").value
     let isAdd = postID == null || postID == "" // add new post
