@@ -1,4 +1,8 @@
 
+// ------- //
+// home.js //
+// ------- //
+
 setupUI() // check if user logged in       
 getPosts()
 

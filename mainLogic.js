@@ -1,4 +1,8 @@
 
+// ------------ //
+// mainlogic.js //
+// ------------ //
+
 const baseURL = "https://tarmeezacademy.com/api/v1"
 
 // Setup UI

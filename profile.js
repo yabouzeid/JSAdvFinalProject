@@ -1,4 +1,8 @@
 
+// ---------- //
+// profile.js //
+// ---------- //
+
 setupUI()
 getUser()
 getPosts()
